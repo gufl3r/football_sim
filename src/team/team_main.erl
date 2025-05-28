@@ -1,7 +1,7 @@
 -module(team_main).
 -include("team.hrl").
 
--export([new/3, add_goal/1, win/1, draw/1, lose/1, print/2]).
+-export([new/3, score_goal/1, concede_goal/1, win/1, draw/1, lose/1, print/2]).
 
 new(Name, Acronym, Stats) ->
     #team{
@@ -12,8 +12,11 @@ new(Name, Acronym, Stats) ->
         midfieldStrenght = element(3, Stats)
     }.
 
-add_goal(Team) ->
+score_goal(Team) ->
     Team#team{goalsScored = Team#team.goalsScored + 1}.
+
+concede_goal(Team) ->
+    Team#team{goalsConceded = Team#team.goalsConceded + 1}.
 
 win(Team) ->
     Team#team{
