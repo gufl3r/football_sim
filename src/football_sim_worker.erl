@@ -4,34 +4,34 @@
 -export([start_link/0, init/1, handle_cast/2, handle_info/2, terminate/2, code_change/3, start_simulation/0, handle_call/3]).
 
 start_link() ->
-    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+	gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 init([]) ->
-    {ok, #{}}.
+	{ok, #{}}.
 
 start_simulation() ->
-    gen_server:cast(?MODULE, start_simulation).
+	gen_server:cast(?MODULE, start_simulation).
 
 handle_cast(start_simulation, State) ->
-    Team1 = team_main:new("Corinthians", "COR", {80, 85, 75}),
-    Team2 = team_main:new("Palmeiras", "PAL", {78, 82, 80}),
-    Match = match_main:new(0, Team1, Team2, #{day => 1}),
-    match_main:print(Match, present),
-    timer:sleep(1000),
-    match_main:advance_status(Match),
-    {noreply, State};
+	Team1 = team_main:new("Paris Saint Germain", "PSG", {85, 88, 92}),
+	Team2 = team_main:new("Internacional de Milão", "INT", {88, 85, 87}),
+	Match = match_main:new(0, Team1, Team2, #{day => 1, delay => 5000}),
+	match_main:print(Match, present),
+	timer:sleep(1000),
+	match_main:advance_status(Match),
+	{noreply, State};
 
 handle_cast(_Msg, State) ->
-    {noreply, State}.
+	{noreply, State}.
 
 handle_call(_Request, _From, State) ->
-    {reply, ok, State}.
+	{reply, ok, State}.
 
 handle_info(_Info, State) ->
-    {noreply, State}.
+	{noreply, State}.
 
 terminate(_Reason, _State) ->
-    ok.
+	ok.
 
 code_change(_OldVsn, State, _Extra) ->
-    {ok, State}.
+	{ok, State}.
