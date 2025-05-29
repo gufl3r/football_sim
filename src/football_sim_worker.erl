@@ -15,7 +15,7 @@ start_simulation() ->
 handle_cast(start_simulation, State) ->
 	Team1 = team_main:new("Paris Saint Germain", "PSG", {85, 88, 92}),
 	Team2 = team_main:new("Internacional de Milão", "INT", {88, 85, 87}),
-	Match = match_main:new(0, Team1, Team2, #{day => 1, delay => 5000}),
+	Match = match_main:new(0, Team1, Team2, #{day => 1}),
 	match_main:print(Match, present),
 	timer:sleep(1000),
 	match_main:advance_status(Match),
