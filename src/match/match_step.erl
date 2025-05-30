@@ -7,22 +7,6 @@
 -export([step/1, advance_to_midfield/1, advance_to_attack/1, advance_to_goal/1, shoot_to_goal/1, next_action/3, after_miss_shoot/1]).
 
 step(Match) ->
-    % time com a bola no meio campo compara sua força para passar do meio campo
-    % se for mais fraco, perde a posse de bola, bola continua no meio campo
-    % se for mais forte, ganha a bola, avança para o ataque
-    % time com a bola no ataque compara sua força de ataque com a defesa do adversário
-    % se for mais fraco, perde a posse de bola
-    % se for mais forte, avança para o gol do adversário
-    % ataque tem chance calculada de fazer gol, sem depender do adversário
-    % chance calculada pode ser algo como: primeiro: roda 50/50: chute de longe ou de perto
-    % se for de perto, chance de gol é 70%, se for de longe, chance de gol é 30%, essas porcentagens + algum modificador de força do ataque
-    % tendo a bola na defesa ganhando ou empatando, tem 15% de chance de tentar ligação direta com o ataque
-    % tendo a bola na defesa perdendo, tem 40% de chance de tentar ligação direta com o ataque, essa porcentagem + algum modificador de "tamanho de derrota", por exemplo, se estiver perdendo de 1 gol, a chance de ligação direta é 40%, se estiver perdendo de 2 gols, a chance de ligação direta é 60%, se estiver perdendo de 3 gols ou mais, a chance de ligação direta na verdade cai, pois o time deve estar desmotivado
-    % chance de sucesso em ligação direta (a bola chegar no ataque) é 30% + algum modificador de força da defesa do time que está com a bola
-    % se um time estiver ganhando de um time melhor que ele, perde ataque aos poucos, a força na verdade é distribuida entre meio campo e defesa, representando o time se fechando na defesa
-    % se um time estiver perdendo de um time pior que ele, perde defesa aos poucos, a força na verdade é distribuida entre meio campo e ataque, representando o time se abrindo no ataque
-    % para contra ataque, acho que depois de conseguir impedir um ataque, com 20% de chance + força da defesa, o time pode receber um buff em meio campo e ataque, esse buff dura por apenas 2 passos (defesa para meio campo, meio campo para ataque), e depois disso o time volta a sua força normal
-    % em qualquer estado do jogo, há 30% de chance de nenhuma ação acontecer, ou seja, apenas o tempo muda (https://football-observatory.com/Effective-playing-time-in-37-European-2150) (a chance de nenhuma ação acontecer foi dimuida de 42% para 30% para aumentar a dinâmica do jogo, já que o jogo é simulado em poucos passos)
     IsEffectivePlayTime = rand:uniform(100) > 30,
     case IsEffectivePlayTime of
         false ->

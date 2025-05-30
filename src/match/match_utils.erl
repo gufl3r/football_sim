@@ -1,5 +1,4 @@
 -module(match_utils).
--include("team/team.hrl").
 -include("match.hrl").
 
 -export([team/2]).
