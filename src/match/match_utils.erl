@@ -1,18 +1,18 @@
 -module(match_utils).
 -include("team/team.hrl").
--include("match/match.hrl").
+-include("match.hrl").
 
--export([team_name/2]).
+-export([team/2]).
 
-team_name(Match, HasBall) ->
+team(Match, HasBall) ->
 	if HasBall ->
-		case Match#match.ballPossession of
-			1 -> Match#match.team1#team.name;
-			2 -> Match#match.team2#team.name
+		case Match#match.ball_possession of
+			1 -> Match#match.team1;
+			2 -> Match#match.team2
 		end;
 	true ->
-		case Match#match.ballPossession of
-			1 -> Match#match.team2#team.name;
-			2 -> Match#match.team1#team.name
+		case Match#match.ball_possession of
+			1 -> Match#match.team2;
+			2 -> Match#match.team1
 		end
 	end.

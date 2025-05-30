@@ -1,17 +1,14 @@
--record
-(
-	team, 
-	{
-		name,
-		acronym,
-		defenseStrenght,
-		midfieldStrenght,
-		attackStrenght,
-		points = 0,
-		goalsScored = 0,
-		goalsConceded = 0,
-		matchesWon = 0,
-		matchesDrawn = 0,
-		matchesLost = 0
-	}
-).
+-record(team, 
+{
+	name,
+	acronym,
+	defense_strength,
+	midfield_strength,
+	attack_strength,
+	points = 0,
+	goals_scored = 0,
+	goals_conceded = 0,
+	matches_won = 0,
+	matches_drawn = 0,
+	matches_lost = 0
+}).
